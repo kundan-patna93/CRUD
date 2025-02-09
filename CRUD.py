@@ -16,7 +16,7 @@ class CRUD_Operation:
     #fetch all database 
     def show_all_database(self):
         query="SHOW DATABASES"
-        obj.execute(query)
+        obj.execute(query) 
         val=obj.fetchall()
         crud.show_database(val)
     
@@ -24,18 +24,27 @@ class CRUD_Operation:
     def show_database(self,val):
         print("List of database: ")
         print("-------------------")
-        lst=[]
+        self.lst=[]
         for v in val:
             for v1 in v:
-                lst.append(v1)
-        print(lst)
-    
-    
-    
-    
+                self.lst.append(v1)
+        print(self.lst)
+
+    #Create a new database
+    def create_database(self,db_name):
+        crud.show_all_database()
+        
+        if db_name in self.lst:
+            print("\n\nThis name_db use database-------"*3)
+        else:
+            query=(f"CREATE DATABASE {db_name}")
+            print("your database sucessfully create")
+            obj.execute(query)
+        #crud.show_all_database()
+            
 crud=CRUD_Operation()
 #crud.show_all_database()
-    
+crud.create_database('kkdb')
 
 
 
